@@ -1,0 +1,62 @@
+{
+  "comments": false,
+  "env": {
+    "test": {
+      "presets": [
+        [
+          "env",
+          {
+            "targets": { "node": 7 }
+          }
+        ],
+        "stage-0"
+      ],
+      "plugins": ["istanbul"]
+    },
+    "main": {
+      "presets": [
+        [
+          "env",
+          {
+            "targets": { "node": 7 }
+          }
+        ],
+        "stage-0"
+      ]
+    },
+    "renderer": {
+      "presets": [
+        [
+          "env",
+          {
+            "modules": false
+          }
+        ],
+        "stage-0"
+      ]
+    },
+    "web": {
+      "presets": [
+        [
+          "env",
+          {
+            "modules": false
+          }
+        ],
+        "stage-0"
+      ]
+    }
+  },
+  "plugins": [
+    "transform-runtime"
+
+    // [
+    //   "import",
+    //   {
+    //     "libraryName": "ant-design-vue",
+    //     "libraryDirectory": "es",
+    //     "style": "css"
+    //   }
+    // ] // `style: true` 会加载 less 文件(先下载less编译器)
+  ]
+}
