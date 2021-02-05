@@ -2,11 +2,14 @@ import Vue from 'vue';
 import axios from 'axios';
 import Antd from 'ant-design-vue';
 import 'ant-design-vue/dist/antd.css';
+import db from './datastore';
 
 import App from './App';
 import router from './router';
 import store from './store';
+
 Vue.use(Antd);
+Vue.prototype.$db = db;
 
 if (!process.env.IS_WEB) Vue.use(require('vue-electron'));
 Vue.http = Vue.prototype.$http = axios;

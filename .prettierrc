@@ -1,8 +1,7 @@
 {
-  "semi": false,
+  "semi": true,
   "singleQuote": true,
   "trailingComma": "all",
-  "jsxBracketSameLine": false,
   "printWidth": 150,
   "vetur.format.defaultFormatterOptions": {
     "js-beautify-html": {

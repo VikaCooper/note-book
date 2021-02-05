@@ -4,8 +4,8 @@
       <div class="logo" @click="() => (collapsed = !collapsed)">
         {{ logoName }}
       </div>
-      <a-menu theme="dark" mode="inline" :default-selected-keys="[1]">
-        <a-menu-item v-for="menu in menuList" :key="menu.id">
+      <a-menu theme="dark" mode="inline" :default-selected-keys="['/post']" @click="handleMenuClick">
+        <a-menu-item v-for="menu in menuList" :key="menu.key">
           <a-icon :type="menu.icon" />
           <span>{{ menu.label }}</span>
         </a-menu-item>
@@ -32,6 +32,13 @@ export default {
     ...mapState('global', ['menuList']),
     logoName() {
       return this.collapsed ? 'QN' : 'Quick Note';
+    },
+  },
+  methods: {
+    handleMenuClick({ key }) {
+      this.$router.push({
+        path: key,
+      });
     },
   },
 };
