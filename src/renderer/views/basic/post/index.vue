@@ -4,24 +4,24 @@
   </div>
 </template>
 <script>
-import mavonEditor from 'mavon-editor'
-import 'mavon-editor/dist/css/index.css'
-import Vue from 'vue'
-Vue.use(mavonEditor)
+import mavonEditor from 'mavon-editor';
+import 'mavon-editor/dist/css/index.css';
+import Vue from 'vue';
+Vue.use(mavonEditor);
 
 export default {
   name: 'Post',
   data() {
     return {
       note: '',
-    }
+    };
   },
   methods: {
     handleSave() {
-      console.log(this.note)
+      // console.log(this.note)
     },
   },
-}
+};
 </script>
 <style lang="scss" scoped>
 .post {
