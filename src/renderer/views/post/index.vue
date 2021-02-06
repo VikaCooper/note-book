@@ -44,28 +44,43 @@ export default {
       });
     },
     handleSave() {
+      if (this.id) {
+        this.updateExsitPost();
+      } else {
+        this.creatdNewPost();
+      }
+    },
+    creatdNewPost() {
       const id = getID();
-      console.log(this.note);
-      console.log('存储================');
       this.$db.insert({
         id,
         title: this.title,
-        time: new Date().getTime(),
+        createTime: new Date().getTime(),
+        updateTime: new Date().getTime(),
         content: this.note,
-      }, (err, doc) => {
+      }, (err) => {
         if (err) {
-          console.log(err);
-          return;
+          this.$message.error('保存失败啦...');
+        } else {
+          this.$message.success('保存成功啦!');
         }
-        console.log(doc);
       });
-      console.log('查询================');
-      this.$db.find({}, (err, docs) => {
+    },
+    updateExsitPost() {
+      this.$db.update({
+        id: this.id,
+      }, {
+        $set: {
+          title: this.title,
+          updateTime: new Date().getTime(),
+          content: this.note,
+        },
+      }, (err) => {
         if (err) {
-          console.log(err);
-          return;
+          this.$message.error('更新失败啦...');
+        } else {
+          this.$message.success('更新成功啦!');
         }
-        console.log(docs);
       });
     },
   },
