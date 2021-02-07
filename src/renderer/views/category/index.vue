@@ -141,7 +141,11 @@ export default {
           ids.push(item.id);
         }
       });
-      console.log(ids);
+
+      if (!ids || !ids.length) {
+        this.$message.warning('请先勾选要操作的笔记哦~');
+        return;
+      }
 
 
       this.$confirm({
