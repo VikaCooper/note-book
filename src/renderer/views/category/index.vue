@@ -192,7 +192,7 @@ export default {
       margin-right: 24px;
       margin-bottom: 24px;
       // width: 20%;
-      flex: 1;
+      // flex: 1;
       height: 280px;
       box-shadow: 1px 1px 12px rgba(0, 0, 0, 0.25);
       transition: all 0.3 ease;
