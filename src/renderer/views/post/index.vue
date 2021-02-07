@@ -95,8 +95,8 @@ export default {
       this.$db.insert({
         id,
         title: this.title || '未命名',
-        createTime: new Date().getTime(),
-        updateTime: new Date().getTime(),
+        createTime: Date.now(),
+        updateTime: Date.now(),
         content: this.note,
       }, (err) => {
         if (err) {
@@ -128,7 +128,7 @@ export default {
       }, {
         $set: {
           title: this.title,
-          updateTime: new Date().getTime(),
+          updateTime: Date.now(),
           content: this.note,
         },
       }, (err) => {

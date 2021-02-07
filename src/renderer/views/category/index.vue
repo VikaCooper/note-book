@@ -15,23 +15,27 @@
       </a-button-group>
 
     </div>
-    <div class="category__wrap">
-      <a-card v-for="c in cardList" :key="c.id" class="category__wrap__card" @click="handleCardClick(c)">
-        <div slot="title" class="category__wrap__card__title">
-
-          <div class="title">
-            <a-checkbox v-if="showBtns" v-model="c.checked"></a-checkbox>
-            <span>{{c.title}}</span>
-          </div>
-          <div class="time">最后更新: {{c.updateTime ? c.updateTime : c.createTime | timeTransfer}}</div>
-        </div>
-        <div slot="extra">
-          <a-button type="default" shape="circle" icon="edit" @click.stop="handleEditClick(c.id)"/>
-          <a-button type="danger" shape="circle" icon="delete" @click.stop="handleDeleteClick(c.id)"/>
-        </div>
-        <p>{{c.content}}</p>
-      </a-card>
+    <div v-if="cardList && cardList.length" class="category__wrap">
+      <a-list :grid="{ gutter: 16, column: 4 }" :data-source="cardList">
+        <a-list-item slot="renderItem" slot-scope="c">
+          <a-card class="category__wrap__card" @click="handleCardClick(c)">
+            <div slot="title" class="category__wrap__card__title">
+              <div class="title">
+                <a-checkbox v-if="showBtns" v-model="c.checked"></a-checkbox>
+                <span>{{c.title}}</span>
+              </div>
+              <div class="time">最后更新: {{c.updateTime ? c.updateTime : c.createTime | timeTransfer}}</div>
+            </div>
+            <div slot="extra">
+              <a-button type="default" shape="circle" icon="edit" @click.stop="handleEditClick(c.id)"/>
+              <a-button type="danger" shape="circle" icon="delete" @click.stop="handleDeleteClick(c.id)"/>
+            </div>
+            <p>{{c.content}}</p>
+          </a-card>
+        </a-list-item>
+      </a-list>
     </div>
+    <a-empty v-else />
   </div>
 </template>
 <script>
