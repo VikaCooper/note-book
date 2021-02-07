@@ -39,6 +39,10 @@ export default {
   },
   methods: {
     handleMenuClick({ key }) {
+      const { path } = this.$route;
+      if (path === key) {
+        return;
+      }
       this.$router.push({
         path: key,
       });
