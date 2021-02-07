@@ -33,7 +33,6 @@ export default {
           console.log(err);
           return;
         }
-        console.log(docs);
         this.cardList = docs;
       });
     },
@@ -56,8 +55,7 @@ export default {
         onOk: () => {
           this.$db.remove({
             id,
-          }, (err, doc) => {
-            console.log(err, doc);
+          }, (err) => {
             if (!err) {
               this.initCategory();
             }

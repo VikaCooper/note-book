@@ -4,7 +4,7 @@
       <div class="logo" @click="() => (collapsed = !collapsed)">
         {{ logoName }}
       </div>
-      <a-menu v-model="defaultKey" theme="dark" mode="inline" :default-selected-keys="defaultKey" @click="handleMenuClick">
+      <a-menu :selectedKeys="defaultKey" theme="dark" mode="inline" :default-selected-keys="defaultKey" @click="handleMenuClick">
         <a-menu-item v-for="menu in menuList" :key="menu.key">
           <a-icon :type="menu.icon" />
           <span>{{ menu.label }}</span>
@@ -34,7 +34,6 @@ export default {
       return this.collapsed ? 'QN' : 'Quick Note';
     },
     defaultKey() {
-      console.log([this.$route.path]);
       return [this.$route.path];
     },
   },
