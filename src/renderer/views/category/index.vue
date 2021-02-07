@@ -57,6 +57,13 @@ export default {
     },
     handleShowBtns() {
       this.showBtns = !this.showBtns;
+      if (this.showBtns) {
+        this.cardList.forEach((item) => {
+          this.$set(item, 'checked', false);
+        });
+        this.checkAll = false;
+        this.indeterminate = false;
+      }
     },
     initCategory() {
       this.$db.find({}, (err, docs) => {
@@ -70,6 +77,10 @@ export default {
       });
     },
     handleCardClick(c) {
+      if (!this.showBtns) {
+        return;
+      }
+
       this.$set(c, 'checked', !c.checked);
       let checkNum = 0;
       this.cardList.forEach((item) => {
