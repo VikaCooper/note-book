@@ -1,10 +1,11 @@
 <template>
   <a-layout id="components-layout-demo-custom-trigger">
-    <a-layout-sider v-model="collapsed" :trigger="null" collapsible>
+    <a-layout-sider v-model="collapsed" :trigger="null" collapsible style="background: #fff;">
       <div class="logo" @click="() => (collapsed = !collapsed)">
-        {{ logoName }}
+        <img v-if="!collapsed" src="@/assets/QuickNoteLogo.png" class="logo--not-collapsed"/>
+        <img v-else src="@/assets/QuickNoteLogo-sm.png" class="logo--collapsed"/>
       </div>
-      <a-menu :selectedKeys="defaultKey" theme="dark" mode="inline" :default-selected-keys="defaultKey" @click="handleMenuClick">
+      <a-menu :selectedKeys="defaultKey" mode="inline" :default-selected-keys="defaultKey" @click="handleMenuClick">
         <a-menu-item v-for="menu in menuList" :key="menu.key">
           <a-icon :type="menu.icon" />
           <span>{{ menu.label }}</span>
@@ -72,9 +73,17 @@ export default {
     font-size: 32px;
     line-height: 32px;
     text-align: center;
-    margin: 16px;
+    margin: 16px 0;
     color: #fff;
     user-select: none;
+
+    &--not-collapsed {
+      width: 180px;
+    }
+
+    &--collapsed {
+      width: 32px;
+    }
   }
 
   .trigger {
