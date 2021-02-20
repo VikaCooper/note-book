@@ -16,21 +16,21 @@
 
     </div>
     <div v-if="cardList && cardList.length" class="category__wrap">
-      <a-list :grid="{ gutter: 16, column: 4 }" :data-source="cardList">
-        <a-list-item slot="renderItem" slot-scope="c">
-          <a-card class="category__wrap__card" @click="handleCardClick(c)">
+      <a-list :data-source="cardList">
+        <a-list-item slot="renderItem" slot-scope="item">
+          <a-card class="category__wrap__card" @click="handleCardClick(item)">
             <div slot="title" class="category__wrap__card__title">
               <div class="title">
-                <a-checkbox v-if="showBtns" v-model="c.checked"></a-checkbox>
-                <span>{{c.title}}</span>
+                <a-checkbox v-if="showBtns" v-model="item.checked"></a-checkbox>
+                <span>{{item.title}}</span>
               </div>
-              <div class="time">最后更新: {{c.updateTime ? c.updateTime : c.createTime | timeTransfer}}</div>
+              <div class="time">最后更新: {{item.updateTime ? item.updateTime : item.createTime | timeTransfer}}</div>
             </div>
             <div slot="extra">
-              <a-button type="default" shape="circle" icon="edit" @click.stop="handleEditClick(c.id)"/>
-              <a-button type="danger" shape="circle" icon="delete" @click.stop="handleDeleteClick(c.id)"/>
+              <a-button type="default" shape="circle" icon="edit" @click.stop="handleEditClick(item.id)"/>
+              <a-button type="danger" shape="circle" icon="delete" @click.stop="handleDeleteClick(item.id)"/>
             </div>
-            <p>{{c.content}}</p>
+            <p>{{item.content}}</p>
           </a-card>
         </a-list-item>
       </a-list>
@@ -70,11 +70,12 @@ export default {
       }
     },
     initCategory() {
-      this.$db.find({}, (err, docs) => {
+      this.$db.postDb.find({}, (err, docs) => {
         if (err) {
           console.log(err);
           return;
         }
+        console.log(docs);
         this.cardList = docs;
         this.checkAll = false;
         this.indeterminate = false;
@@ -120,7 +121,7 @@ export default {
         title: '提示',
         content: '确认删除这篇笔记嘛?',
         onOk: () => {
-          this.$db.remove({
+          this.$db.postDb.remove({
             id,
           }, (err) => {
             if (!err) {
@@ -152,7 +153,7 @@ export default {
         title: '提示',
         content: '确认删除选中的笔记嘛?',
         onOk: () => {
-          this.$db.remove({
+          this.$db.postDb.remove({
             id: { $in: ids },
           }, {
             multi: true,

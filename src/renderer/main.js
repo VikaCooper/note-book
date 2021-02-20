@@ -11,7 +11,7 @@ import './theme/theme.less';
 import './utils/filters';
 
 // 引入nedb数据库
-import db from './datastore';
+import db from './dataStores';
 
 
 import App from './App';

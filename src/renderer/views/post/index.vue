@@ -71,7 +71,7 @@ export default {
   },
   methods: {
     queryById(id) {
-      this.$db.find({ id }, (err, docs) => {
+      this.$db.postDb.find({ id }, (err, docs) => {
         if (err) {
           console.log(err);
           return;
@@ -92,7 +92,7 @@ export default {
     uploadImg() {},
     savePost() {
       const id = getID();
-      this.$db.insert({
+      this.$db.postDb.insert({
         id,
         title: this.title || '未命名',
         createTime: Date.now(),
@@ -123,7 +123,7 @@ export default {
       }
     },
     updateExsitPost() {
-      this.$db.update({
+      this.$db.postDb.update({
         id: this.id,
       }, {
         $set: {

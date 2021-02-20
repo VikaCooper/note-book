@@ -14,6 +14,12 @@ export default {
         icon: 'container',
         key: '/category',
       },
+      {
+        id: 3,
+        label: '标签',
+        icon: 'tags',
+        key: '/tag',
+      },
     ],
   },
   mutations: {},
