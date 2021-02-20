@@ -5,7 +5,7 @@ import axios from 'axios';
 
 // 引入antdv组件库
 import Antd from 'ant-design-vue';
-import 'ant-design-vue/dist/antd.css';
+import './theme/theme.less';
 
 // 注入全局过滤器
 import './utils/filters';
