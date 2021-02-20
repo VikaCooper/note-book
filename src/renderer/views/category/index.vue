@@ -16,7 +16,7 @@
 
     </div>
     <div v-if="cardList && cardList.length" class="category__wrap">
-      <a-list :data-source="cardList">
+      <a-list :grid="{column: 3}" :data-source="cardList" style="width: 100%;">
         <a-list-item slot="renderItem" slot-scope="item">
           <a-card class="category__wrap__card" @click="handleCardClick(item)">
             <div slot="title" class="category__wrap__card__title">
