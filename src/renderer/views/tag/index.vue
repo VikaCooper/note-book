@@ -7,10 +7,11 @@
     </div>
     <a-empty v-else>
       <span slot="description">还没有标签哦~</span>
-      <a-button type="primary">
+      <a-button type="primary" @click="handleAddClick">
         添加一个
       </a-button>
     </a-empty>
+    <AddDialog :visible="addDialogVisible" />
   </div>
 </template>
 <script>
@@ -19,11 +20,21 @@ export default {
   data() {
     return {
       tagList: [],
+      addDialogVisible: false,
     };
   },
+  components: {
+    AddDialog: () => import('./components/AddDialog'),
+  },
+  created() {
+    this.initTags();
+  },
   methods: {
-    initCategory() {
-      this.$db.postDb.find({}, (err, docs) => {
+    handleAddClick() {
+      this.addDialogVisible = true;
+    },
+    initTags() {
+      this.$db.tagDb.find({}, (err, docs) => {
         if (err) {
           console.log(err);
           return;
